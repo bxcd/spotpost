@@ -41,8 +41,8 @@ public class DataUtils {
         String getResponse = getRequest(baseUrl, getPath);
         List<Event> events = parseEvents(getResponse);
             // TODO: Update parse/format logic
-//        List<Session> sessions = makeSessions(events);
-//        List<SessionSet> sessionSets = makeSessionSets(sessions);
+        List<Session> sessions = makeSessions(events);
+        List<SessionSet> sessionSets = makeSessionSets(sessions);
 //        String formattedSessionSets = formatSessionSets(sessionSets);
 //        postRequest(baseUrl, postPath, formattedSessionSets);
         return events; // TODO: Update return value to return sessions
@@ -190,6 +190,7 @@ public class DataUtils {
             if (!userAdded) {
                 SessionSet newSet = new SessionSet();
                 newSet.setUserId(s.getUserId());
+                newSet.setSessions(new ArrayList<>());
                 newSet.getSessions().add(s);
                 sessionSets.add(newSet);
             }
@@ -200,7 +201,9 @@ public class DataUtils {
 
         List<Session> sessions = new ArrayList<>();
         if (events == null) return sessions;
+        int i = 0;
         for (Event e : events) {
+            Log.d(LOG_TAG, "makeSessions: " + ++i);
             boolean pageAdded = false;
             for (Session s : sessions) {
                 if (e.getVisitorId().equals(s.getUserId())
