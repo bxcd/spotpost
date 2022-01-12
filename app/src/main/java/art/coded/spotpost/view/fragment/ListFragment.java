@@ -7,11 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import art.coded.spotpost.R;
 import art.coded.spotpost.databinding.FragmentListBinding;
 import art.coded.spotpost.view.adapter.ListAdapter;
 import art.coded.spotpost.viewmodel.ListViewModel;
@@ -54,6 +57,17 @@ public class ListFragment extends Fragment {
                 entityList -> listAdapter.setEvents(entityList));
 
         return root;
+    }
+
+    @Override public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        binding.buttonSecond.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View view) {
+                NavHostFragment.findNavController(ListFragment.this)
+                        .navigate(R.id.action_SecondFragment_to_FirstFragment);
+            }
+        });
     }
 
     // Nullify view bindings on Fragment destruction

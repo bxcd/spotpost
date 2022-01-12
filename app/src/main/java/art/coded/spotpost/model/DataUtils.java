@@ -40,11 +40,12 @@ public class DataUtils {
             String baseUrl, @Nullable String getPath, @Nullable String postPath) {
         String getResponse = getRequest(baseUrl, getPath);
         List<Event> events = parseEvents(getResponse);
-        List<Session> sessions = makeSessions(events);
-        List<SessionSet> sessionSets = makeSessionSets(sessions);
-        String formattedSessionSets = formatSessionSets(sessionSets);
-        postRequest(baseUrl, postPath, formattedSessionSets);
-        return events; // TODO: Update to return sessions
+            // TODO: Update parse/format logic
+//        List<Session> sessions = makeSessions(events);
+//        List<SessionSet> sessionSets = makeSessionSets(sessions);
+//        String formattedSessionSets = formatSessionSets(sessionSets);
+//        postRequest(baseUrl, postPath, formattedSessionSets);
+        return events; // TODO: Update return value to return sessions
     }
 
     public static String getRequest (

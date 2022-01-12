@@ -1,5 +1,6 @@
 package art.coded.spotpost.view;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -36,13 +37,6 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-
-        binding.fab.setOnClickListener(view -> {
-            MainViewModel mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
-            mainViewModel.load(getApplication());
-            mainViewModel.spotPost();
-            Snackbar.make(view, "Processing request...", Snackbar.LENGTH_LONG).show();
-        });
     }
 
     @Override public boolean onCreateOptionsMenu(Menu menu) {
