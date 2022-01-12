@@ -3,7 +3,7 @@ package art.coded.spotpost.model.entity;
 import java.util.List;
 
 /**
- * An Event object instance with the required tags for interfacing with Dao and Room
+ * An Event object instance with the required tags for interfacing with EventDao and Room
  */
 public class Session {
 

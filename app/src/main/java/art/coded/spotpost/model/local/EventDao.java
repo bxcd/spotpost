@@ -11,10 +11,10 @@ import java.util.List;
 import art.coded.spotpost.model.entity.Event;
 
 /**
- * Database interactions required to store fetched Elements and retrieve stored Elements
+ * Database interactions required to store fetched entitys and retrieve stored entitys
  */
-@Dao public interface Dao {
+@Dao public interface EventDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE) void insert(Event event);
-    @Query("SELECT * from element_table") LiveData<List<Event>> getAll();
+    @Query("SELECT * from event_table") LiveData<List<Event>> getAll();
 }

@@ -8,16 +8,16 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 import art.coded.spotpost.model.entity.Event;
-import art.coded.spotpost.model.local.Dao;
-import art.coded.spotpost.model.local.RoomDatabase;
+import art.coded.spotpost.model.local.EventDao;
+import art.coded.spotpost.model.local.EventRoomDatabase;
 
 public class Repository {
 
     private static final String LOG_TAG = Repository.class.getSimpleName();
-    Dao mDao;
+    EventDao mDao;
 
     public Repository(Context context) {
-        RoomDatabase db = RoomDatabase.getInstance(context);
+        EventRoomDatabase db = EventRoomDatabase.getInstance(context);
         mDao = db.dao();
     }
 
@@ -27,8 +27,8 @@ public class Repository {
 
     private static class RequestAsyncTask extends AsyncTask<String, Void, Void> {
 
-        Dao mAsyncTaskDao;
-        public RequestAsyncTask(Dao dao) { mAsyncTaskDao = dao; }
+        EventDao mAsyncTaskDao;
+        public RequestAsyncTask(EventDao dao) { mAsyncTaskDao = dao; }
 
         @Override protected Void doInBackground(String... strings) {
             List<Event> events = DataUtils.spotPost(strings[0], strings[1], strings[2]);

@@ -11,7 +11,7 @@ import art.coded.spotpost.model.Repository;
 import art.coded.spotpost.model.entity.Event;
 
 /**
- * Interacts with Repository to sync datasource with database and provide Element LiveData to the UI
+ * Interacts with Repository to sync datasource with database and provide entity LiveData to the UI
  */
 public class ListViewModel extends ViewModel {
 
@@ -21,7 +21,7 @@ public class ListViewModel extends ViewModel {
     private Repository mRepository;
     private LiveData<List<Event>> mData;
 
-    // From application argument instantiates Repository from which LiveData is retrieved from Dao
+    // From application argument instantiates Repository from which LiveData is retrieved from EventDao
     public void load(Context context) {
         mRepository = new Repository(context);
         mData = mRepository.getAllEvents();

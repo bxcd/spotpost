@@ -28,7 +28,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**
- * The actions required to fetch and format raw Elements
+ * The actions required to fetch and format raw entitys
  */
 public class DataUtils {
 
@@ -124,7 +124,7 @@ public class DataUtils {
         } return events;
     }
 
-    // Parses single raw Element
+    // Parses single raw entity
     public static Event parseEvent(JSONObject jsonObject) throws JSONException {
 
         String visitorId = nullToDefaultStr(jsonObject.getString(Event.KEY_VISITORID));
@@ -234,12 +234,12 @@ public class DataUtils {
         return url;
     }
 
-    // Translates null to default String to prevent NPExceptions on accessing certain Elements
+    // Translates null to default String to prevent NPExceptions on accessing certain entitys
     public static String nullToDefaultStr(String str) {
         return (str.equals("null")) ? DEFAULT_VALUE_STR : str;
     }
 
-    // Translates null to default Integer to prevent NPExceptions on accessing certain Elements
+    // Translates null to default Integer to prevent NPExceptions on accessing certain entitys
     public static Number nullToDefaultNum(Number n) {
         return (n == null) ? DEFAULT_VALUE_NUM : n;
     }

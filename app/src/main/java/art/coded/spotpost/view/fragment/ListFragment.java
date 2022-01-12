@@ -49,9 +49,9 @@ public class ListFragment extends Fragment {
                 new ViewModelProvider(this).get(ListViewModel.class);
         listViewModel.load(requireContext());
 
-        // Populate ListAdapter with observable Element LiveData generating callbacks on list updates
+        // Populate ListAdapter with observable entity LiveData generating callbacks on list updates
         listViewModel.getData().observe(getViewLifecycleOwner(),
-                elementList -> listAdapter.setEvents(elementList));
+                entityList -> listAdapter.setEvents(entityList));
 
         return root;
     }
