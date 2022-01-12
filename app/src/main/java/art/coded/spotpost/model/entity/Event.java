@@ -3,6 +3,7 @@ package art.coded.spotpost.model.entity;
 /**
  * An Event object instance with the required tags for interfacing with Dao and Room
  */
+@Entity(tableName="event_table")
 public class Event {
 
     public static final String KEY_EVENTID = "eventId";
@@ -10,7 +11,7 @@ public class Event {
     public static final String KEY_VISITORID = "visitorId";
     public static final String KEY_TIMESTAMP = "timestamp";
 
-    Integer eventId;
+    @PrimaryKey Integer eventId;
     String url;
     String visitorId;
     Long timestamp;

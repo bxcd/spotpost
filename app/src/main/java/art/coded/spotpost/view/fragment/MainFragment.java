@@ -1,4 +1,4 @@
-package art.coded.spotpost.view;
+package art.coded.spotpost.view.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,15 +10,15 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import art.coded.spotpost.R;
-import art.coded.spotpost.databinding.FragmentFirstBinding;
+import art.coded.spotpost.databinding.FragmentMainBinding;
 
-public class FirstFragment extends Fragment {
+public class MainFragment extends Fragment {
 
-    private FragmentFirstBinding binding;
+    private FragmentMainBinding binding;
 
     @Override public View onCreateView(
             LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentFirstBinding.inflate(inflater, container, false);
+        binding = FragmentMainBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -27,7 +27,7 @@ public class FirstFragment extends Fragment {
 
         binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
-                NavHostFragment.findNavController(FirstFragment.this)
+                NavHostFragment.findNavController(MainFragment.this)
                         .navigate(R.id.action_FirstFragment_to_SecondFragment);
             }
         });

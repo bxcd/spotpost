@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         binding.fab.setOnClickListener(view -> {
             MainViewModel mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
-            mainViewModel.load(this);
+            mainViewModel.load(getApplication());
             mainViewModel.spotPost();
             Snackbar.make(view, "Processing request...", Snackbar.LENGTH_LONG).show();
         });

@@ -36,7 +36,7 @@ public class DataUtils {
     private static final String DEFAULT_VALUE_STR = "";
     private static final int DEFAULT_VALUE_NUM = -1;
 
-    public static void spotPost(
+    public static List<Event> spotPost(
             String baseUrl, @Nullable String getPath, @Nullable String postPath) {
         String getResponse = getRequest(baseUrl, getPath);
         List<Event> events = parseEvents(getResponse);
@@ -44,6 +44,7 @@ public class DataUtils {
         List<SessionSet> sessionSets = makeSessionSets(sessions);
         String formattedSessionSets = formatSessionSets(sessionSets);
         postRequest(baseUrl, postPath, formattedSessionSets);
+        return events; // TODO: Update to return sessions
     }
 
     public static String getRequest (
