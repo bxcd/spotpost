@@ -43,8 +43,8 @@ public class DataUtils {
             // TODO: Update parse/format logic
         List<Session> sessions = makeSessions(events);
         List<SessionSet> sessionSets = makeSessionSets(sessions);
-//        String formattedSessionSets = formatSessionSets(sessionSets);
-//        postRequest(baseUrl, postPath, formattedSessionSets);
+        String formattedSessionSets = formatSessionSets(sessionSets);
+        postRequest(baseUrl, postPath, formattedSessionSets);
         return events; // TODO: Update return value to return sessions
     }
 
@@ -99,6 +99,7 @@ public class DataUtils {
         try {
             responses = client.newCall(request).execute();
             responseBody = responses.body().string();
+            Log.v(LOG_TAG, "post request data : " + data);
             Log.v(LOG_TAG, "Post response: " + responseBody);
         } catch (IOException e) {
             e.printStackTrace();
@@ -167,6 +168,7 @@ public class DataUtils {
         } catch (JSONException e) {
             Log.e(LOG_TAG, e.getMessage());
         }
+        Log.d(LOG_TAG, "formatSessionSets");
         return formattedSessions.toString();
     }
 
@@ -194,7 +196,9 @@ public class DataUtils {
                 newSet.getSessions().add(s);
                 sessionSets.add(newSet);
             }
-        } return sessionSets;
+        }
+        Log.d(LOG_TAG, "makeSessionSets");
+        return sessionSets;
     }
 
     public static List<Session> makeSessions(List<Event> events) {
