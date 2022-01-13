@@ -16,7 +16,7 @@ import art.coded.spotpost.R;
 import art.coded.spotpost.model.entity.Event;
 
 /**
- * Manages and formats ViewHolders from the corresponding entitys data
+ * Manages and formats ViewHolders from the corresponding entities data
  */
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
@@ -54,7 +54,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         return mAllEvents == null ? 0 : mAllEvents.size();
     }
 
-    // Defines the entitys data that will populate ViewHolders
+    // Defines the entities data that will populate ViewHolders
     public void setEvents(List<Event> events) {
         mAllEvents = events;
         notifyDataSetChanged();

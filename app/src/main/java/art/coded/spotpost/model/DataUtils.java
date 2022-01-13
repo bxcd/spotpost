@@ -28,7 +28,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**
- * The actions required to fetch and format raw entitys
+ * The actions required to fetch and format raw entities
  */
 public class DataUtils {
 
@@ -36,16 +36,16 @@ public class DataUtils {
     private static final String DEFAULT_VALUE_STR = "";
     private static final int DEFAULT_VALUE_NUM = -1;
 
+    // TODO: Update parse/format logic
     public static List<Event> spotPost(
             String baseUrl, @Nullable String getPath, @Nullable String postPath) {
         String getResponse = getRequest(baseUrl, getPath);
         List<Event> events = parseEvents(getResponse);
-            // TODO: Update parse/format logic
         List<Session> sessions = makeSessions(events);
         List<SessionSet> sessionSets = makeSessionSets(sessions);
         String formattedSessionSets = formatSessionSets(sessionSets);
         postRequest(baseUrl, postPath, formattedSessionSets);
-        return events; // TODO: Update return value to return sessions
+        return events; // TODO: Update to return sessions
     }
 
     public static String getRequest (
@@ -93,13 +93,13 @@ public class DataUtils {
                 .build();
 
         Response responses = null;
-        String responseBody = "";
+        String responseStr = "";
 
         try {
             responses = client.newCall(request).execute();
-            responseBody = responses.body().string();
+            responseStr = responses.body().string();
             Log.v(LOG_TAG, "Post request: " + data);
-            Log.v(LOG_TAG, "Post response: " + responseBody);
+            Log.v(LOG_TAG, "Post response: " + responseStr);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -238,12 +238,12 @@ public class DataUtils {
         return url;
     }
 
-    // Translates null to default String to prevent NPExceptions on accessing certain entitys
+    // Translates null to default String to prevent NPExceptions on accessing certain entities
     public static String nullToDefaultStr(String str) {
         return (str.equals("null")) ? DEFAULT_VALUE_STR : str;
     }
 
-    // Translates null to default Integer to prevent NPExceptions on accessing certain entitys
+    // Translates null to default Integer to prevent NPExceptions on accessing certain entities
     public static Number nullToDefaultNum(Number n) {
         return (n == null) ? DEFAULT_VALUE_NUM : n;
     }

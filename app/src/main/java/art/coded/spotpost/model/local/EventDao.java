@@ -11,7 +11,7 @@ import java.util.List;
 import art.coded.spotpost.model.entity.Event;
 
 /**
- * Database interactions required to store fetched entitys and retrieve stored entitys
+ * Database interactions required to store fetched entities and retrieve stored entities
  */
 @Dao public interface EventDao {
 
