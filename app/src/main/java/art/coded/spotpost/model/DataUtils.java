@@ -55,7 +55,6 @@ public class DataUtils {
                 .appendPath(getPath)
                 .build();
         String url = getUrl(uri).toString();
-        Log.d(LOG_TAG, url);
 
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
@@ -99,7 +98,7 @@ public class DataUtils {
         try {
             responses = client.newCall(request).execute();
             responseBody = responses.body().string();
-            Log.v(LOG_TAG, "post request data : " + data);
+            Log.v(LOG_TAG, "Post request: " + data);
             Log.v(LOG_TAG, "Post response: " + responseBody);
         } catch (IOException e) {
             e.printStackTrace();
@@ -148,8 +147,8 @@ public class DataUtils {
             for (SessionSet ss : sessionSets) {
                 JSONObject ssObject = new JSONObject();
                 List<Session> sessions = ss.getSessions();
+                JSONArray sArray = new JSONArray();
                 for (Session s : sessions) {
-                    JSONArray sArray = new JSONArray();
                     JSONObject sObject = new JSONObject();
                     sObject.put(Session.KEY_STARTTIME, s.getStartTime());
                     sObject.put(Session.KEY_DURATION, s.getDuration());
@@ -160,15 +159,14 @@ public class DataUtils {
                     }
                     sObject.put(Session.KEY_PAGES, s.getPages());
                     sArray.put(sObject);
-                    ssObject.put(ss.getUserId(), sArray);
-                    ssArray.put(ssObject);
                 }
+                ssObject.put(ss.getUserId(), sArray);
+                ssArray.put(ssObject);
             }
             formattedSessions.put("sessionsByUserId", ssArray);
         } catch (JSONException e) {
             Log.e(LOG_TAG, e.getMessage());
         }
-        Log.d(LOG_TAG, "formatSessionSets");
         return formattedSessions.toString();
     }
 
@@ -197,7 +195,6 @@ public class DataUtils {
                 sessionSets.add(newSet);
             }
         }
-        Log.d(LOG_TAG, "makeSessionSets");
         return sessionSets;
     }
 
@@ -207,7 +204,6 @@ public class DataUtils {
         if (events == null) return sessions;
         int i = 0;
         for (Event e : events) {
-            Log.d(LOG_TAG, "makeSessions: " + ++i);
             boolean pageAdded = false;
             for (Session s : sessions) {
                 if (e.getVisitorId().equals(s.getUserId())
